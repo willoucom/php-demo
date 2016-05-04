@@ -29,7 +29,7 @@ node() {
     stage "Reporting"
       step([$class: 'JUnitResultArchiver', testResults: '**/ci/logs/atoum.xunit.xml'])
       step([$class: 'hudson.plugins.checkstyle.CheckStylePublisher', pattern: '**/ci/logs/phpcs.xml'])
-      publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: 'ci/logs', reportFiles: 'phpmd.html', reportName: 'Php mess detector'])
+      publishHTML(target: [allowMissing: true, keepAll: true, reportDir: 'ci/logs/', reportFiles: 'phpmd.html', reportName: 'Php mess detector'])
 
     stage "Archiving"
       step([$class: 'ArtifactArchiver', artifacts: '**/*', fingerprint: true])

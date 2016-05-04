@@ -8,4 +8,8 @@ class HelloWorld
     public function getHiAtoum(){
         return 'Hi atoum !';
     }
+
+    public function getByeAtoum(){
+        return 'Bye atoum !';
+    }
 }
