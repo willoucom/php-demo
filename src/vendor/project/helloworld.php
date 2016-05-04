@@ -5,8 +5,7 @@ namespace Vendor\Project;
 
 class HelloWorld
 {
-    public function getHiAtoum ()
-    {
+    public function getHiAtoum(){
         return 'Hi atoum !';
     }
 }

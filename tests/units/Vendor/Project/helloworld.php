@@ -21,8 +21,7 @@ class HelloWorld extends atoum
     /*
      * This method is dedicated to the getHiAtoum() method
      */
-    public function testGetHiAtoum ()
-    {
+    public function testGetHiAtoum(){
         $this
             // creation of a new instance of the tested class
             ->given($this->newTestedInstance)
