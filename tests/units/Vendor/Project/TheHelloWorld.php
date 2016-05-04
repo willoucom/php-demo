@@ -6,7 +6,7 @@
 namespace Vendor\Project\tests\units;
 
 // You must include the tested class (if you have no autoloader)
-require_once __DIR__ . '/../../../../src/Vendor/Project/HelloWorld.php';
+require_once __DIR__ . '/../../../../src/Vendor/Project/TheHelloWorld.php';
 
 use atoum;
 
