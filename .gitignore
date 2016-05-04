@@ -1,0 +1,4 @@
+.idea
+/ci/logs/*.xml
+src/Vendor/composer/
+src/Vendor/autoload.php
