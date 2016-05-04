@@ -13,7 +13,7 @@ node() {
     stage "PHP QC"
       parallel php_md: {
         // Php mess detector
-        sh 'docker run --rm -v jenkins2docker_data:/var/jenkins_home -w ${PWD} willoucom/php-multitest phpmd src xml cleancode --reportfile ci/logs/phpmd.xml | true'
+        sh 'docker run --rm -v jenkins2docker_data:/var/jenkins_home -w ${PWD} willoucom/php-multitest phpmd src html cleancode --reportfile ci/logs/phpmd.html | true'
       }, php_cs: {
         // Php code sniffer
         sh 'docker run --rm -v jenkins2docker_data:/var/jenkins_home -w ${PWD} willoucom/php-multitest phpcs --report=checkstyle --report-file=ci/logs/phpcs.xml --standard=PSR2 --extensions=php --ignore=autoload.php src | true'
@@ -29,8 +29,9 @@ node() {
     stage "Reporting"
       step([$class: 'JUnitResultArchiver', testResults: '**/ci/logs/atoum.xunit.xml'])
       step([$class: 'hudson.plugins.checkstyle.CheckStylePublisher', pattern: '**/ci/logs/phpcs.xml'])
+      publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: 'ci/logs', reportFiles: 'phpmd.html', reportName: 'Php mess detector'])
 
-      stage "Archiving"
-        step([$class: 'ArtifactArchiver', artifacts: '**/*', fingerprint: true])
+    stage "Archiving"
+      step([$class: 'ArtifactArchiver', artifacts: '**/*', fingerprint: true])
 
 }

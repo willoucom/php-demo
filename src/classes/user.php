@@ -13,5 +13,10 @@ class user
         echo "thisisaverylonglinethisisaverylonglinethisisaverylonglinethisisaverylonglinethisisaverylonglinethisisaverylonglinethisisaverylonglinethisisaverylonglinethisisaverylonglinethisisaverylongline";
 
     }
+    
+    public function getHiAtoum()
+    {
+        return 'Hi atoum !';
+    }
 
 }
