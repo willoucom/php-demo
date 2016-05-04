@@ -26,7 +26,9 @@ node() {
     stage "Atoum"
         sh 'docker run --rm -v jenkins2docker_data:/var/jenkins_home -w ${PWD} willoucom/php-multitest php /mageekguy.atoum.phar -c ci/atoum.conf.php -d tests/units | true'
 
-    stage "Reporting"
+    stage "Archiving"
       step([$class: 'ArtifactArchiver', artifacts: '**/*', fingerprint: true])
-      step([$class: 'JUnitResultArchiver', testResults: '**/ci/atoum.xunit.xml'])
+
+    stage "Reporting"
+      step([$class: 'JUnitResultArchiver', testResults: '**/ci/logs/atoum.xunit.xml'])
 }

@@ -15,7 +15,7 @@ $script->addDefaultReport();
 /*
 Please replace in next line /path/to/destination/directory/atoum.xunit.xml by your output file for xUnit report.
 */
-$xunitWriter = new atoum\writers\file('/phptest/ci/logs/atoum.xunit.xml');
+$xunitWriter = new atoum\writers\file('ci/logs/atoum.xunit.xml');
 
 /*
 Generate a xUnit report.
