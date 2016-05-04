@@ -1,5 +1,5 @@
 node() {
-  dev dockervolume = 'jenkins2docker_data'
+  def dockervolume = 'jenkins2docker_data'
   stage "Checkout"
     checkout scm
     def workspace = pwd()
