@@ -24,9 +24,9 @@ $cloverReport->addWriter($cloverWriter);
 $runner->addReport($cloverReport);
 
 // Generate a HTML report
-$coverageHtmlField = new atoum\reports\fields\runner\coverage\html('Coverage','ci/logs/coverage');
+$coverageHtmlField = new atoum\reports\fields\runner\coverage\html('Coverage','ci/html/coverage');
 $coverageHtmlField->setRootUrl('http://url/of/web/site');
-$coverageTreemapField = new atoum\report\fields\runner\coverage\treemap('Coverage', 'ci/logs/treemap');
+$coverageTreemapField = new atoum\report\fields\runner\coverage\treemap('Coverage', 'ci/html/treemap');
 $coverageTreemapField
   ->setTreemapUrl('http://url/of/treemap')
   ->setHtmlReportBaseUrl($coverageHtmlField->getRootUrl())
