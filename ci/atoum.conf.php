@@ -7,20 +7,32 @@ Do "php path/to/test/file -c path/to/this/file" or "php path/to/atoum/scripts/ru
 
 use \mageekguy\atoum;
 
-/*
-This will ad the default CLI report
-*/
+// This will ad the default CLI report
 $script->addDefaultReport();
 
-/*
-Please replace in next line /path/to/destination/directory/atoum.xunit.xml by your output file for xUnit report.
-*/
-$xunitWriter = new atoum\writers\file('ci/logs/atoum.xunit.xml');
 
-/*
-Generate a xUnit report.
-*/
+// Generate a xUnit report.
+$xunitWriter = new atoum\writers\file('ci/logs/atoum.xunit.xml');
 $xunitReport = new atoum\reports\asynchronous\xunit();
 $xunitReport->addWriter($xunitWriter);
-
 $runner->addReport($xunitReport);
+
+// Generate a clover report
+$cloverWriter = new atoum\writers\file('ci/logs/atoum.clover.xml');
+$cloverReport = new atoum\reports\asynchronous\clover();
+$cloverReport->addWriter($cloverWriter);
+$runner->addReport($cloverReport);
+
+// Generate a HTML report
+$coverageHtmlField = new atoum\reports\fields\runner\coverage\html('Coverage','ci/logs/coverage');
+$coverageHtmlField->setRootUrl('http://url/of/web/site');
+$coverageTreemapField = new atoum\report\fields\runner\coverage\treemap('Coverage', 'ci/logs/treemap');
+$coverageTreemapField
+  ->setTreemapUrl('http://url/of/treemap')
+  ->setHtmlReportBaseUrl($coverageHtmlField->getRootUrl())
+;
+
+$script->addDefaultReport()
+  ->addField($coverageHtmlField)
+  ->addField($coverageTreemapField)
+;
