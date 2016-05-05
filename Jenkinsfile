@@ -45,6 +45,7 @@ node() {
       try{
         step([$class: 'JUnitResultArchiver', testResults: '**/ci/logs/atoum.xunit.xml'])
         step([$class: 'hudson.plugins.checkstyle.CheckStylePublisher', pattern: '**/ci/logs/phpcs.xml'])
+        step([$class: 'CloverPublisher', cloverReportDir: 'ci/logs/', cloverReportFileName: 'atoum.clover.xml'])
         publishHTML(target: [allowMissing: true, keepAll: true, reportDir: 'ci/logs/', reportFiles: 'phpmd.html', reportName: 'Php mess detector'])
       } catch (e) {
         echo "errors found"
